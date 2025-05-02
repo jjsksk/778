@@ -39,13 +39,19 @@ function draw() {
     graphics.translate(graphics.width, 0); // 移動到右邊
     graphics.scale(-1, 1); // 水平翻轉
 
-    // 每隔 20 單位繪製圓形
+    // 每隔 20 單位繪製方格與圓形
     for (let i = 0; i < graphics.width; i += 20) {
       for (let j = 0; j < graphics.height; j += 20) {
         const col = video.get(i, j); // 擷取攝影機影像相對位置的顏色
+
+        // 繪製方格
         graphics.fill(col);
         graphics.noStroke();
-        graphics.ellipse(i, j, 15, 15); // 繪製圓形
+        graphics.rect(i, j, 18, 18); // 繪製寬為 18 的方格
+
+        // 繪製中間的圓
+        graphics.fill('#ffe5ec'); // 設定圓的顏色
+        graphics.ellipse(i + 9, j + 9, 5, 5); // 繪製直徑為 5 的圓
       }
     }
 

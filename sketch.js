@@ -34,6 +34,11 @@ function draw() {
     graphics.clear(); // 清除之前的內容
     graphics.background(0); // 設定背景顏色為黑色
 
+    // 翻轉 graphics 的內容
+    graphics.push();
+    graphics.translate(graphics.width, 0); // 移動到右邊
+    graphics.scale(-1, 1); // 水平翻轉
+
     // 每隔 20 單位繪製圓形
     for (let i = 0; i < graphics.width; i += 20) {
       for (let j = 0; j < graphics.height; j += 20) {
@@ -44,8 +49,14 @@ function draw() {
       }
     }
 
+    graphics.pop();
+
     // 將 graphics 繪製到畫布上
-    image(graphics, x, y, imageWidth, imageHeight);
+    push();
+    translate(x + imageWidth, y); // 移動到影像的右邊
+    scale(-1, 1); // 水平翻轉
+    image(graphics, 0, 0, imageWidth, imageHeight);
+    pop();
   }
 }
 
